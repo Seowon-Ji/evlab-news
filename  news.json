@@ -1,0 +1,77 @@
+[
+  {
+    "date": "07/2026",
+    "en": "Our team has been selected for the IITP-funded <strong>AI Frontier Young Researcher Support Program</strong>, as part of a consortium project led by <strong>Jeju National University</strong>, with <strong>NC AI, AIVIS, and Metsakuur Company</strong>.",
+    "ko": "우리 연구팀이 <strong>제주대학교</strong>가 주관하고 <strong>NC AI, AIVIS, 메타쿠어</strong>가 참여하는 IITP 지원 <strong>AI최고급신진연구자지원 사업</strong>에 선정되었습니다."
+  },
+  {
+    "date": "07/2026",
+    "en": "Our team has been selected for the MOTIE/KEIT-funded <strong>Development of Virtual Operation and Verification Technology for Manufacturing Equipment through Automated Digital Twin Generation Based on Generative AI</strong>, as part of a consortium project led by <strong>Cubictek</strong>, with <strong>Iljin, Howon, WEMAP, and Sejong University</strong>.",
+    "ko": "우리 연구팀이 <strong>큐빅테크</strong>가 주관하고 <strong>일진, 호원, 위맵, 세종대학교</strong>가 참여하는 산업통상자원부·한국산업기술기획평가원 지원 <strong>생성형 AI 기반 디지털트윈 자동 생성을 통한 제조설비의 가상 운영·검증 기술 개발</strong> 과제에 선정되었습니다."
+  },
+  {
+    "date": "07/2026",
+    "en": "Our team has been selected for the MSIT/KOSAC-funded <strong>Next-Generation Engineer Development Program</strong>, as part of a consortium project led by <strong>Yonsei University</strong>, with <strong>Korea University, Sogang University, Ajou University, and Hanyang University</strong>.",
+    "ko": "우리 연구팀이 <strong>연세대학교</strong>가 주관하고 <strong>고려대학교, 서강대학교, 아주대학교, 한양대학교</strong>가 참여하는 과학기술정보통신부·한국과학창의재단 지원 <strong>차세대 공학자 양성사업</strong>에 선정되었습니다."
+  },
+  {
+    "date": "06/2026",
+    "en": "Our work on <strong>heterogeneous stereo deblurring with PECA</strong> has been accepted to <strong>ECCV 2026</strong>. Following our CVPR and ICCV publications, this work continues our efforts in advancing image restoration and computational imaging for real-world visual applications.",
+    "ko": "<strong>PECA 기반 이종 스테레오 디블러링</strong> 연구가 <strong>ECCV 2026</strong>에 채택되었습니다. 본 연구는 기존 CVPR 및 ICCV 연구에 이어 실제 시각 응용을 위한 영상 복원과 계산 이미징 기술을 발전시키기 위한 연구입니다."
+  },
+  {
+    "date": "05/2026",
+    "en": "Our work on <strong>efficient LLM</strong> has been accepted to <strong>IEEE TCAS-II</strong>.",
+    "ko": "<strong>효율적인 대규모 언어 모델</strong>에 관한 연구가 <strong>IEEE TCAS-II</strong>에 채택되었습니다."
+  },
+  {
+    "date": "01/2026",
+    "en": "Our paper on <strong>efficient coarse-to-fine approach in deblurring</strong> has reached <strong>1,000 citations</strong> on Google Scholar.",
+    "ko": "<strong>효율적인 coarse-to-fine 디블러링 기법</strong>에 관한 논문이 Google Scholar 기준 <strong>1,000회 인용</strong>을 달성했습니다."
+  },
+  {
+    "date": "01/2026",
+    "en": "<strong>Junghyun, Jungwoo, and Eunkang</strong> have joined EV Lab as undergraduate research interns.",
+    "ko": "<strong>정현, 정우, 은강</strong> 학생이 EV Lab 학부연구생으로 합류했습니다."
+  },
+  {
+    "date": "12/2025",
+    "en": "<strong>Jaeyoung</strong> will join <strong>ETRI</strong> as a Winter Research Trainee to work on <strong>VLA models</strong> at the Robot Foundation Model Research Lab.",
+    "ko": "<strong>재영</strong> 학생이 <strong>ETRI 로봇 파운데이션 모델 연구실</strong>에서 VLA 모델을 연구하는 동계 연구연수생으로 참여합니다."
+  },
+  {
+    "date": "08/2025",
+    "en": "Our team has been selected for the Seoul Biohub-funded <strong>Seoul Bio-AI Convergence Support Program</strong>, in collaboration with <strong>Pukyong National University, Gachon University, and MEDAI</strong>.",
+    "ko": "우리 연구팀이 <strong>부경대학교, 가천대학교, MEDAI</strong>와 함께 서울바이오허브 지원 <strong>서울 바이오-AI 융합 지원 사업</strong>에 선정되었습니다."
+  },
+  {
+    "date": "06/2025",
+    "en": "Our work on <strong>efficient federated learning with weight standardization and distribution-aware quantization</strong> has been accepted to <strong>ICCV 2025</strong>.",
+    "ko": "<strong>가중치 표준화와 분포 인식 양자화를 활용한 효율적인 연합학습</strong> 연구가 <strong>ICCV 2025</strong>에 채택되었습니다."
+  },
+  {
+    "date": "05/2025",
+    "en": "Our team has been selected for the Seoul Biohub-funded <strong>2025 Hospital-Based Medical Data Utilization Support Program</strong>, in collaboration with <strong>Seoul St. Mary’s Hospital and MEDAI</strong>.",
+    "ko": "우리 연구팀이 <strong>서울성모병원, MEDAI</strong>와 함께 서울바이오허브 지원 <strong>2025년 병원기반 의료데이터 활용 지원 사업</strong>에 선정되었습니다."
+  },
+  {
+    "date": "05/2025",
+    "en": "Our team won <strong>2nd place</strong> in the <strong>Hanwha Systems AI Challenge: Infrared Sensor Instance Segmentation</strong>, and was invited to present at the <strong>Thermal Infrared in Robotics Workshop at ICRA 2025</strong>.",
+    "ko": "우리 연구팀이 <strong>한화시스템 AI Challenge: 적외선 센서 인스턴스 분할</strong> 부문에서 <strong>2위</strong>를 수상했으며, <strong>ICRA 2025 Thermal Infrared in Robotics Workshop</strong>에 발표자로 초청되었습니다."
+  },
+  {
+    "date": "05/2025",
+    "en": "Our work on <strong>depth estimation using 2D Hilbert curves</strong> has been accepted to <strong>ICML 2025</strong>.",
+    "ko": "<strong>2차원 Hilbert curve를 활용한 깊이 추정</strong> 연구가 <strong>ICML 2025</strong>에 채택되었습니다."
+  },
+  {
+    "date": "03/2025",
+    "en": "<strong>Suheum, Jaeyoung, and Seojin</strong> have joined EV Lab as undergraduate research interns.",
+    "ko": "<strong>수흠, 재영, 서진</strong> 학생이 EV Lab 학부연구생으로 합류했습니다."
+  },
+  {
+    "date": "02/2025",
+    "en": "<strong>EV Lab</strong> was established at <strong>Konkuk University, School of Computer Science & Engineering</strong>.",
+    "ko": "<strong>EV Lab</strong>이 <strong>건국대학교 컴퓨터공학부</strong>에 설립되었습니다."
+  }
+]

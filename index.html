@@ -1,119 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-<style>
+  <title>EV Lab News</title>
 
-body{
-    font-family: Arial, sans-serif;
-    margin:20px;
-    color:#222;
-}
+  <style>
+    :root {
+      --green: #126b2a;
+      --text: #1f1f1f;
+      --muted: #6b6b6b;
+      --border: #c9d4cc;
+      --background: #eef5f0;
+    }
 
-button{
-    padding:6px 14px;
-    margin-right:5px;
-    cursor:pointer;
-    border:1px solid #aaa;
-    border-radius:4px;
-    background:white;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-button.active{
-    background:#2E7D32;
-    color:white;
-}
+    body {
+      margin: 0;
+      padding: 8px 10px 30px;
+      background: var(--background);
+      color: var(--text);
+      font-family:
+        Arial,
+        "Apple SD Gothic Neo",
+        "Noto Sans KR",
+        sans-serif;
+    }
 
-#kr{
-    display:none;
-}
+    .news-container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
-ul{
-    padding-left:20px;
-}
+    .news-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
 
-li{
-    margin-bottom:12px;
-    line-height:1.5;
-}
+    h2 {
+      margin: 0;
+      color: var(--green);
+      font-size: 30px;
+      font-weight: 700;
+    }
 
-</style>
+    .language-toggle {
+      display: inline-flex;
+      padding: 3px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: white;
+    }
 
+    .language-button {
+      border: 0;
+      border-radius: 999px;
+      padding: 7px 14px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .language-button:hover {
+      color: var(--green);
+    }
+
+    .language-button.active {
+      background: var(--green);
+      color: white;
+    }
+
+    #news-list {
+      margin: 0;
+      padding-left: 25px;
+    }
+
+    #news-list li {
+      margin-bottom: 17px;
+      padding-left: 4px;
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .news-date {
+      white-space: nowrap;
+    }
+
+    .status-message {
+      padding: 20px 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 8px 4px 24px;
+      }
+
+      h2 {
+        font-size: 25px;
+      }
+
+      .news-header {
+        align-items: flex-start;
+      }
+
+      .language-button {
+        padding: 6px 11px;
+        font-size: 13px;
+      }
+
+      #news-list {
+        padding-left: 23px;
+      }
+
+      #news-list li {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <main class="news-container">
+    <header class="news-header">
+      <h2 id="section-title">NEWS</h2>
 
-<div style="margin-bottom:20px;">
+      <div
+        class="language-toggle"
+        role="group"
+        aria-label="Language selection"
+      >
+        <button
+          id="button-en"
+          class="language-button active"
+          type="button"
+          data-language="en"
+        >
+          English
+        </button>
 
-<button id="btn-en" class="active" onclick="showEN()">🇺🇸 English</button>
+        <button
+          id="button-ko"
+          class="language-button"
+          type="button"
+          data-language="ko"
+        >
+          한국어
+        </button>
+      </div>
+    </header>
 
-<button id="btn-kr" onclick="showKR()">🇰🇷 한국어</button>
+    <div id="status" class="status-message">
+      Loading news...
+    </div>
 
-</div>
+    <ul id="news-list" hidden></ul>
+  </main>
 
-<div id="en">
+  <script>
+    const NEWS_FILE = "./news.json";
 
-<h2>NEWS</h2>
+    let newsItems = [];
+    let currentLanguage =
+      localStorage.getItem("evlab-news-language") || "en";
 
-<ul>
+    const sectionTitle = document.getElementById("section-title");
+    const newsList = document.getElementById("news-list");
+    const statusMessage = document.getElementById("status");
+    const languageButtons =
+      document.querySelectorAll(".language-button");
 
-<li>(07/2026) Our team has been selected for ...</li>
+    async function loadNews() {
+      try {
+        const response = await fetch(NEWS_FILE, {
+          cache: "no-store"
+        });
 
-<li>(07/2026) Our team has been selected for ...</li>
+        if (!response.ok) {
+          throw new Error(
+            `Failed to load news.json: ${response.status}`
+          );
+        }
 
-<li>(06/2026) Our work on heterogeneous stereo deblurring ...</li>
+        newsItems = await response.json();
 
-...
+        if (!Array.isArray(newsItems)) {
+          throw new Error("news.json must contain an array.");
+        }
 
-</ul>
+        renderNews();
+      } catch (error) {
+        console.error(error);
 
-</div>
+        statusMessage.textContent =
+          "뉴스를 불러오지 못했습니다. news.json 파일을 확인해 주세요.";
+      }
+    }
 
+    function renderNews() {
+      const title =
+        currentLanguage === "ko" ? "뉴스" : "NEWS";
 
-<div id="kr">
+      sectionTitle.textContent = title;
+      document.documentElement.lang = currentLanguage;
 
-<h2>뉴스</h2>
+      newsList.innerHTML = "";
 
-<ul>
+      newsItems.forEach((item) => {
+        const listItem = document.createElement("li");
+        const localizedText = item[currentLanguage];
 
-<li>(2026.07) 우리 연구실이 ... 선정되었습니다.</li>
+        if (!localizedText) {
+          return;
+        }
 
-<li>(2026.07) 우리 연구실이 ... 선정되었습니다.</li>
+        const formattedDate =
+          currentLanguage === "ko"
+            ? convertDateToKorean(item.date)
+            : item.date;
 
-<li>(2026.06) PECA 기반 Stereo Deblurring 연구가 ECCV 2026에 채택되었습니다.</li>
+        listItem.innerHTML =
+          `<span class="news-date">(${formattedDate})</span> ` +
+          localizedText;
 
-...
+        newsList.appendChild(listItem);
+      });
 
-</ul>
+      languageButtons.forEach((button) => {
+        const isActive =
+          button.dataset.language === currentLanguage;
 
-</div>
+        button.classList.toggle("active", isActive);
+        button.setAttribute(
+          "aria-pressed",
+          String(isActive)
+        );
+      });
 
+      statusMessage.hidden = true;
+      newsList.hidden = false;
+    }
 
-<script>
+    function convertDateToKorean(date) {
+      const [month, year] = date.split("/");
 
-function showKR(){
+      if (!month || !year) {
+        return date;
+      }
 
-document.getElementById("kr").style.display="block";
-document.getElementById("en").style.display="none";
+      return `${year}.${month}`;
+    }
 
-document.getElementById("btn-kr").classList.add("active");
-document.getElementById("btn-en").classList.remove("active");
+    function changeLanguage(language) {
+      currentLanguage = language;
 
-}
+      localStorage.setItem(
+        "evlab-news-language",
+        currentLanguage
+      );
 
-function showEN(){
+      renderNews();
+    }
 
-document.getElementById("kr").style.display="none";
-document.getElementById("en").style.display="block";
+    languageButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        changeLanguage(button.dataset.language);
+      });
+    });
 
-document.getElementById("btn-en").classList.add("active");
-document.getElementById("btn-kr").classList.remove("active");
-
-}
-
-</script>
-
+    loadNews();
+  </script>
 </body>
 </html>
