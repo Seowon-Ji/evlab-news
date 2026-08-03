@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    margin:20px;
+    color:#222;
+}
+
+button{
+    padding:6px 14px;
+    margin-right:5px;
+    cursor:pointer;
+    border:1px solid #aaa;
+    border-radius:4px;
+    background:white;
+}
+
+button.active{
+    background:#2E7D32;
+    color:white;
+}
+
+#kr{
+    display:none;
+}
+
+ul{
+    padding-left:20px;
+}
+
+li{
+    margin-bottom:12px;
+    line-height:1.5;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div style="margin-bottom:20px;">
+
+<button id="btn-en" class="active" onclick="showEN()">English</button>
+
+<button id="btn-kr" onclick="showKR()">한국어</button>
+
+</div>
+
+<div id="en">
+
+<h2>NEWS</h2>
+
+<ul>
+
+<li>(07/2026) Our team has been selected for ...</li>
+
+<li>(07/2026) Our team has been selected for ...</li>
+
+<li>(06/2026) Our work on heterogeneous stereo deblurring ...</li>
+
+...
+
+</ul>
+
+</div>
+
+
+<div id="kr">
+
+<h2>뉴스</h2>
+
+<ul>
+
+<li>(2026.07) 우리 연구실이 ... 선정되었습니다.</li>
+
+<li>(2026.07) 우리 연구실이 ... 선정되었습니다.</li>
+
+<li>(2026.06) PECA 기반 Stereo Deblurring 연구가 ECCV 2026에 채택되었습니다.</li>
+
+...
+
+</ul>
+
+</div>
+
+
+<script>
+
+function showKR(){
+
+document.getElementById("kr").style.display="block";
+document.getElementById("en").style.display="none";
+
+document.getElementById("btn-kr").classList.add("active");
+document.getElementById("btn-en").classList.remove("active");
+
+}
+
+function showEN(){
+
+document.getElementById("kr").style.display="none";
+document.getElementById("en").style.display="block";
+
+document.getElementById("btn-en").classList.add("active");
+document.getElementById("btn-kr").classList.remove("active");
+
+}
+
+</script>
+
+</body>
+</html>
