@@ -56,6 +56,11 @@
       padding: 24px 32px 34px;
     }
 
+    .vision-paragraph strong {
+        color: var(--green);
+        font-weight: 700;
+    }
+
     /* ==========================================================
        LANGUAGE TOGGLE
        ========================================================== */
@@ -470,7 +475,7 @@
           {
             heading: "Our Approach",
             text:
-              "Rather than simply scaling model size, we integrate domain-specific prior knowledge from image processing, computer vision, medical imaging, and biosignals into AI model design. We believe that combining data-driven learning with domain expertise leads to more robust, interpretable, and computationally efficient AI systems."
+              "Rather than simply scaling model size, we integrate domain-specific prior knowledge from <strong>IMAGE PROCESSING</strong>, <strong>COMPUTER VISION</strong>, <strong>MEDICAL IMAGING</strong>, and <strong>BIOSIGNALS</strong> into AI model design. We believe that combining data-driven learning with domain expertise leads to more robust, interpretable, and computationally efficient AI systems."
           },
           {
             heading: "Our Goal",
@@ -491,7 +496,7 @@
           {
             heading: "우리의 접근법",
             text:
-              "단순히 모델의 규모를 확장하는 방식에서 벗어나, 영상처리, 컴퓨터 비전, 의료영상, 생체신호 등 다양한 분야의 도메인 지식을 AI 모델 설계에 적극적으로 반영합니다. 데이터 기반 학습과 도메인 전문성을 결합할 때 더욱 강건하고 해석 가능하며 계산 효율적인 AI 시스템을 구현할 수 있다고 믿습니다."
+              "단순히 모델의 규모를 확장하는 방식에서 벗어나, <strong>영상처리</strong>, <strong>컴퓨터 비전</strong>, <strong>의료영상</strong>, <strong>생체신호</strong> 등 다양한 분야의 도메인 지식을 AI 모델 설계에 적극적으로 반영합니다. 데이터 기반 학습과 도메인 전문성을 결합할 때 더욱 강건하고 해석 가능하며 계산 효율적인 AI 시스템을 구현할 수 있다고 믿습니다."
           },
           {
             heading: "우리의 목표",
@@ -616,7 +621,7 @@
         paragraph.className =
           "vision-paragraph";
 
-        paragraph.textContent =
+        paragraph.innerHTML =
           section.text;
 
         body.appendChild(heading);
