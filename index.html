@@ -12,6 +12,16 @@
 
   <style>
     :root {
+      /*
+       * 전체 글씨 크기 조절
+       *
+       * 0.8 = 80%
+       * 0.9 = 90%
+       * 1.0 = 100%
+       * 1.1 = 110%
+       */
+      --font-scale: 0.7;
+
       --green: #176b2f;
       --text: #2f2f2f;
       --muted: #6b6b6b;
@@ -65,15 +75,19 @@
     }
 
     .language-button {
-      min-width: 84px;
+      min-width: 112px;
       padding: 8px 15px;
       border: 0;
       border-radius: 999px;
       background: transparent;
       color: var(--muted);
-      font-size: 14px;
+
+      font-size: calc(14px * var(--font-scale));
       font-weight: 600;
+      line-height: 1.3;
+
       cursor: pointer;
+
       transition:
         background 0.15s ease,
         color 0.15s ease;
@@ -105,8 +119,10 @@
       margin: 0 0 40px;
       text-align: center;
       color: var(--green);
-      font-size: 30px;
+
+      font-size: calc(30px * var(--font-scale));
       font-weight: 700;
+      line-height: 1.35;
       letter-spacing: 0.4px;
     }
 
@@ -136,13 +152,15 @@
 
     .vision-body {
       flex: 1;
+      min-width: 0;
       padding: 1px 0 2px;
     }
 
     .vision-subtitle {
       margin: 0 0 10px;
       color: var(--green);
-      font-size: 22px;
+
+      font-size: calc(22px * var(--font-scale));
       font-weight: 700;
       line-height: 1.35;
     }
@@ -150,7 +168,8 @@
     .vision-paragraph {
       margin: 0;
       color: var(--text);
-      font-size: 18px;
+
+      font-size: calc(18px * var(--font-scale));
       font-weight: 400;
       line-height: 1.85;
     }
@@ -177,16 +196,24 @@
     .news-title {
       margin: 0 0 24px;
       color: var(--green);
-      font-size: 30px;
+
+      font-size: calc(30px * var(--font-scale));
       font-weight: 700;
+      line-height: 1.35;
       letter-spacing: 0.2px;
     }
 
+    /*
+     * 뉴스 목록 영역의 높이입니다.
+     * 필요하면 520px 값을 조절하세요.
+     */
     .news-scroll-area {
       max-height: 520px;
       padding-right: 14px;
+
       overflow-y: auto;
       overflow-x: hidden;
+
       overscroll-behavior: contain;
       scrollbar-gutter: stable;
       scrollbar-width: thin;
@@ -221,7 +248,8 @@
       margin-bottom: 18px;
       padding-left: 5px;
       color: var(--text);
-      font-size: 18px;
+
+      font-size: calc(18px * var(--font-scale));
       font-weight: 400;
       line-height: 1.65;
     }
@@ -239,12 +267,13 @@
     .status-message {
       padding: 4px 0;
       color: var(--muted);
-      font-size: 16px;
+
+      font-size: calc(16px * var(--font-scale));
       line-height: 1.6;
     }
 
     /* ==========================================================
-       MOBILE
+       TABLET / MOBILE
        ========================================================== */
 
     @media (max-width: 800px) {
@@ -257,9 +286,9 @@
       }
 
       .language-button {
-        min-width: 72px;
+        min-width: 101px;
         padding: 7px 11px;
-        font-size: 13px;
+        font-size: calc(13px * var(--font-scale));
       }
 
       .vision-section {
@@ -268,8 +297,7 @@
 
       .vision-title {
         margin-bottom: 30px;
-        font-size: 24px;
-        line-height: 1.35;
+        font-size: calc(24px * var(--font-scale));
       }
 
       .vision-item {
@@ -284,11 +312,11 @@
 
       .vision-subtitle {
         margin-bottom: 8px;
-        font-size: 19px;
+        font-size: calc(19px * var(--font-scale));
       }
 
       .vision-paragraph {
-        font-size: 16px;
+        font-size: calc(16px * var(--font-scale));
         line-height: 1.8;
       }
 
@@ -298,7 +326,7 @@
 
       .news-title {
         margin-bottom: 20px;
-        font-size: 25px;
+        font-size: calc(25px * var(--font-scale));
       }
 
       .news-scroll-area {
@@ -313,7 +341,7 @@
       #news-list li {
         margin-bottom: 16px;
         padding-left: 3px;
-        font-size: 16px;
+        font-size: calc(16px * var(--font-scale));
         line-height: 1.7;
       }
     }
@@ -323,17 +351,22 @@
         padding: 14px 14px 24px;
       }
 
+      .language-button {
+        min-width: 96px;
+        padding: 7px 9px;
+      }
+
       .vision-title {
-        font-size: 22px;
+        font-size: calc(22px * var(--font-scale));
       }
 
       .vision-subtitle {
-        font-size: 18px;
+        font-size: calc(18px * var(--font-scale));
       }
 
       .vision-paragraph,
       #news-list li {
-        font-size: 15px;
+        font-size: calc(15px * var(--font-scale));
       }
 
       .news-scroll-area {
@@ -359,7 +392,7 @@
           data-language="en"
           aria-pressed="true"
         >
-         🇺🇸 English
+          🇺🇸 English
         </button>
 
         <button
@@ -369,7 +402,7 @@
           data-language="ko"
           aria-pressed="false"
         >
-         🇰🇷 한국어
+          🇰🇷 한국어
         </button>
       </div>
     </div>
@@ -557,6 +590,7 @@
           document.createElement("div");
 
         accent.className = "vision-accent";
+
         accent.setAttribute(
           "aria-hidden",
           "true"
@@ -637,11 +671,14 @@
         const textSpan =
           document.createElement("span");
 
+        /*
+         * news.json 문장에 <strong> 태그가 포함될 수 있으므로
+         * innerHTML을 사용합니다.
+         */
         textSpan.innerHTML =
           localizedText;
 
         listItem.appendChild(textSpan);
-
         newsList.appendChild(listItem);
       });
 
