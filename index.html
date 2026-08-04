@@ -2,77 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>EV Lab News</title>
+  <title>EV Lab</title>
 
   <style>
     :root {
-      --green: #126b2a;
-      --text: #1f1f1f;
+      --green: #176b2f;
+      --text: #2f2f2f;
       --muted: #6b6b6b;
-      --border: #c9d4cc;
-      --background: #eef5f0;
+      --border: #b9c9bd;
+      --background: #edf4ef;
+      --white: #ffffff;
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      padding: 8px 10px 30px;
-      background: var(--background);
+      background: transparent;
       color: var(--text);
-      font-family:
-        Arial,
-        "Apple SD Gothic Neo",
-        "Noto Sans KR",
-        sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    .news-container {
+    button,
+    input,
+    textarea,
+    select {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .page-container {
       width: 100%;
-      max-width: 1400px;
+      max-width: 1500px;
       margin: 0 auto;
+      padding: 28px 32px 50px;
     }
 
-    .news-header {
+    /* ==========================================================
+       LANGUAGE TOGGLE
+       ========================================================== */
+
+    .top-controls {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      margin: 0;
-      color: var(--green);
-      font-size: 30px;
-      font-weight: 700;
+      justify-content: flex-end;
+      margin-bottom: 18px;
     }
 
     .language-toggle {
       display: inline-flex;
       padding: 3px;
-      border: 1px solid var(--border);
+      border: 1px solid #b8c4bb;
       border-radius: 999px;
-      background: white;
+      background: var(--white);
     }
 
     .language-button {
+      min-width: 84px;
+      padding: 8px 15px;
       border: 0;
       border-radius: 999px;
-      padding: 7px 14px;
       background: transparent;
       color: var(--muted);
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
-      transition: 0.15s ease;
+      transition:
+        background 0.15s ease,
+        color 0.15s ease;
     }
 
     .language-button:hover {
@@ -81,47 +88,194 @@
 
     .language-button.active {
       background: var(--green);
-      color: white;
+      color: var(--white);
+    }
+
+    .language-button:focus-visible {
+      outline: 3px solid rgba(23, 107, 47, 0.25);
+      outline-offset: 2px;
+    }
+
+    /* ==========================================================
+       OUR RESEARCH PHILOSOPHY
+       ========================================================== */
+
+    .vision-section {
+      padding: 16px 0 58px;
+    }
+
+    .vision-title {
+      margin: 0 0 42px;
+      text-align: center;
+      color: var(--green);
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .vision-content {
+      width: 100%;
+      max-width: 940px;
+      margin: 0 auto;
+    }
+
+    .vision-item {
+      display: flex;
+      align-items: stretch;
+      gap: 22px;
+      margin-bottom: 34px;
+    }
+
+    .vision-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .vision-accent {
+      width: 4px;
+      min-width: 4px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    .vision-body {
+      flex: 1;
+      padding: 1px 0 2px;
+    }
+
+    .vision-subtitle {
+      margin: 0 0 10px;
+      color: var(--green);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .vision-paragraph {
+      margin: 0;
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.85;
+    }
+
+    /* ==========================================================
+       DIVIDER
+       ========================================================== */
+
+    .section-divider {
+      width: 100%;
+      margin: 0 0 42px;
+      border: 0;
+      border-top: 1px dashed var(--border);
+    }
+
+    /* ==========================================================
+       NEWS
+       ========================================================== */
+
+    .news-section {
+      padding: 0 0 20px;
+    }
+
+    .news-title {
+      margin: 0 0 30px;
+      color: var(--green);
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
     }
 
     #news-list {
       margin: 0;
-      padding-left: 25px;
+      padding-left: 28px;
     }
 
     #news-list li {
-      margin-bottom: 17px;
-      padding-left: 4px;
+      margin-bottom: 18px;
+      padding-left: 5px;
+      color: var(--text);
       font-size: 18px;
-      line-height: 1.55;
+      font-weight: 400;
+      line-height: 1.65;
+    }
+
+    #news-list li:last-child {
+      margin-bottom: 0;
     }
 
     .news-date {
+      color: var(--green);
+      font-weight: 700;
       white-space: nowrap;
     }
 
     .status-message {
-      padding: 20px 0;
+      padding: 4px 0;
       color: var(--muted);
       font-size: 16px;
+      line-height: 1.6;
     }
 
-    @media (max-width: 700px) {
-      body {
-        padding: 8px 4px 24px;
+    /* ==========================================================
+       MOBILE
+       ========================================================== */
+
+    @media (max-width: 800px) {
+      .page-container {
+        padding: 20px 18px 36px;
       }
 
-      h2 {
-        font-size: 25px;
-      }
-
-      .news-header {
-        align-items: flex-start;
+      .top-controls {
+        margin-bottom: 12px;
       }
 
       .language-button {
-        padding: 6px 11px;
+        min-width: 72px;
+        padding: 7px 11px;
         font-size: 13px;
+      }
+
+      .vision-section {
+        padding: 12px 0 42px;
+      }
+
+      .vision-title {
+        margin-bottom: 32px;
+        font-size: 24px;
+        line-height: 1.35;
+      }
+
+      .vision-content {
+        max-width: none;
+      }
+
+      .vision-item {
+        gap: 14px;
+        margin-bottom: 28px;
+      }
+
+      .vision-accent {
+        width: 3px;
+        min-width: 3px;
+      }
+
+      .vision-subtitle {
+        margin-bottom: 8px;
+        font-size: 19px;
+      }
+
+      .vision-paragraph {
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
+      .section-divider {
+        margin-bottom: 32px;
+      }
+
+      .news-title {
+        margin-bottom: 24px;
+        font-size: 25px;
       }
 
       #news-list {
@@ -129,18 +283,38 @@
       }
 
       #news-list li {
+        margin-bottom: 16px;
+        padding-left: 3px;
         font-size: 16px;
-        line-height: 1.6;
+        line-height: 1.7;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .page-container {
+        padding: 16px 14px 30px;
+      }
+
+      .vision-title {
+        font-size: 22px;
+      }
+
+      .vision-subtitle {
+        font-size: 18px;
+      }
+
+      .vision-paragraph,
+      #news-list li {
+        font-size: 15px;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="news-container">
-    <header class="news-header">
-      <h2 id="section-title">NEWS</h2>
+  <main class="page-container">
 
+    <div class="top-controls">
       <div
         class="language-toggle"
         role="group"
@@ -151,8 +325,9 @@
           class="language-button active"
           type="button"
           data-language="en"
+          aria-pressed="true"
         >
-          English
+          🇺🇸 English
         </button>
 
         <button
@@ -160,29 +335,130 @@
           class="language-button"
           type="button"
           data-language="ko"
+          aria-pressed="false"
         >
-          한국어
+          🇰🇷 한국어
         </button>
       </div>
-    </header>
-
-    <div id="status" class="status-message">
-      Loading news...
     </div>
 
-    <ul id="news-list" hidden></ul>
+    <section
+      class="vision-section"
+      aria-labelledby="vision-title"
+    >
+      <h2
+        id="vision-title"
+        class="vision-title"
+      >
+        OUR RESEARCH PHILOSOPHY
+      </h2>
+
+      <div
+        id="vision-content"
+        class="vision-content"
+      ></div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section
+      class="news-section"
+      aria-labelledby="news-title"
+    >
+      <h2
+        id="news-title"
+        class="news-title"
+      >
+        NEWS
+      </h2>
+
+      <div
+        id="status"
+        class="status-message"
+        aria-live="polite"
+      >
+        Loading news...
+      </div>
+
+      <ul
+        id="news-list"
+        hidden
+      ></ul>
+    </section>
+
   </main>
 
   <script>
     const NEWS_FILE = "./news.json";
 
-    let newsItems = [];
-    let currentLanguage =
-      localStorage.getItem("evlab-news-language") || "en";
+    const visionText = {
+      en: {
+        title: "OUR RESEARCH PHILOSOPHY",
+        sections: [
+          {
+            heading: "Our Vision",
+            text:
+              "EV Lab pursues efficient and intelligent AI by understanding the intrinsic nature of data and the unique characteristics of each application domain."
+          },
+          {
+            heading: "Our Approach",
+            text:
+              "Rather than simply scaling model size, we integrate domain-specific prior knowledge from image processing, computer vision, medical imaging, and biosignals into AI model design. We believe that combining data-driven learning with domain expertise leads to more robust, interpretable, and computationally efficient AI systems."
+          },
+          {
+            heading: "Our Goal",
+            text:
+              "Our goal is to build practical AI systems that simultaneously achieve high performance and computational efficiency, enabling intelligent solutions for challenging real-world problems."
+          }
+        ]
+      },
 
-    const sectionTitle = document.getElementById("section-title");
-    const newsList = document.getElementById("news-list");
-    const statusMessage = document.getElementById("status");
+      ko: {
+        title: "연구 철학",
+        sections: [
+          {
+            heading: "우리의 비전",
+            text:
+              "EV Lab은 데이터의 본질과 각 응용 분야의 고유한 특성을 깊이 이해함으로써 효율적이고 지능적인 AI를 개발하는 것을 지향합니다."
+          },
+          {
+            heading: "우리의 접근법",
+            text:
+              "단순히 모델의 규모를 확장하는 방식에서 벗어나, 영상처리, 컴퓨터 비전, 의료영상, 생체신호 등 다양한 분야의 도메인 지식을 AI 모델 설계에 적극적으로 반영합니다. 데이터 기반 학습과 도메인 전문성을 결합할 때 더욱 강건하고 해석 가능하며 계산 효율적인 AI 시스템을 구현할 수 있다고 믿습니다."
+          },
+          {
+            heading: "우리의 목표",
+            text:
+              "EV Lab은 높은 성능과 계산 효율성을 동시에 달성하는 실용적인 AI 시스템을 개발하여, 실제 환경에서 마주하는 복잡한 문제를 지능적이고 효과적으로 해결하는 것을 목표로 합니다."
+          }
+        ]
+      }
+    };
+
+    let newsItems = [];
+
+    let currentLanguage =
+      localStorage.getItem("evlab-language") || "en";
+
+    if (!["en", "ko"].includes(currentLanguage)) {
+      currentLanguage = "en";
+    }
+
+    const visionTitle =
+      document.getElementById("vision-title");
+
+    const visionContent =
+      document.getElementById("vision-content");
+
+    const newsTitle =
+      document.getElementById("news-title");
+
+    const newsList =
+      document.getElementById("news-list");
+
+    const statusMessage =
+      document.getElementById("status");
+
     const languageButtons =
       document.querySelectorAll(".language-button");
 
@@ -198,67 +474,178 @@
           );
         }
 
-        newsItems = await response.json();
+        const data = await response.json();
 
-        if (!Array.isArray(newsItems)) {
-          throw new Error("news.json must contain an array.");
+        if (!Array.isArray(data)) {
+          throw new Error(
+            "news.json must contain an array."
+          );
         }
 
-        renderNews();
+        newsItems = data;
+        renderPage();
       } catch (error) {
         console.error(error);
 
+        renderVision();
+        updateLanguageButtons();
+        updateDocumentLanguage();
+
+        statusMessage.hidden = false;
+
         statusMessage.textContent =
-          "뉴스를 불러오지 못했습니다. news.json 파일을 확인해 주세요.";
+          currentLanguage === "ko"
+            ? "뉴스를 불러오지 못했습니다. news.json 파일을 확인해 주세요."
+            : "Unable to load the news. Please check news.json.";
       }
     }
 
-    function renderNews() {
-      const title =
-        currentLanguage === "ko" ? "뉴스" : "NEWS";
+    function renderPage() {
+      renderVision();
+      renderNews();
+      updateLanguageButtons();
+      updateDocumentLanguage();
+    }
 
-      sectionTitle.textContent = title;
-      document.documentElement.lang = currentLanguage;
+    function renderVision() {
+      const content = visionText[currentLanguage];
+
+      visionTitle.textContent = content.title;
+      visionContent.innerHTML = "";
+
+      content.sections.forEach((section) => {
+        const item = document.createElement("article");
+        item.className = "vision-item";
+
+        const accent = document.createElement("div");
+        accent.className = "vision-accent";
+        accent.setAttribute("aria-hidden", "true");
+
+        const body = document.createElement("div");
+        body.className = "vision-body";
+
+        const heading = document.createElement("h3");
+        heading.className = "vision-subtitle";
+        heading.textContent = section.heading;
+
+        const paragraph = document.createElement("p");
+        paragraph.className = "vision-paragraph";
+        paragraph.textContent = section.text;
+
+        body.appendChild(heading);
+        body.appendChild(paragraph);
+
+        item.appendChild(accent);
+        item.appendChild(body);
+
+        visionContent.appendChild(item);
+      });
+    }
+
+    function renderNews() {
+      newsTitle.textContent =
+        currentLanguage === "ko"
+          ? "뉴스"
+          : "NEWS";
 
       newsList.innerHTML = "";
 
       newsItems.forEach((item) => {
-        const listItem = document.createElement("li");
-        const localizedText = item[currentLanguage];
+        const localizedText =
+          item[currentLanguage];
 
         if (!localizedText) {
           return;
         }
+
+        const listItem =
+          document.createElement("li");
+
+        const dateSpan =
+          document.createElement("span");
+
+        dateSpan.className = "news-date";
 
         const formattedDate =
           currentLanguage === "ko"
             ? convertDateToKorean(item.date)
             : item.date;
 
-        listItem.innerHTML =
-          `<span class="news-date">(${formattedDate})</span> ` +
-          localizedText;
+        dateSpan.textContent =
+          `(${formattedDate})`;
 
-        newsList.appendChild(listItem);
-      });
-
-      languageButtons.forEach((button) => {
-        const isActive =
-          button.dataset.language === currentLanguage;
-
-        button.classList.toggle("active", isActive);
-        button.setAttribute(
-          "aria-pressed",
-          String(isActive)
+        listItem.appendChild(dateSpan);
+        listItem.appendChild(
+          document.createTextNode(" ")
         );
+
+        const textSpan =
+          document.createElement("span");
+
+        /*
+          news.json의 en/ko 문장에 <strong> 태그가 포함되어 있으므로
+          innerHTML을 사용합니다.
+        */
+        textSpan.innerHTML = localizedText;
+
+        listItem.appendChild(textSpan);
+        newsList.appendChild(listItem);
       });
 
       statusMessage.hidden = true;
       newsList.hidden = false;
     }
 
+    function updateLanguageButtons() {
+      languageButtons.forEach((button) => {
+        const isActive =
+          button.dataset.language ===
+          currentLanguage;
+
+        button.classList.toggle(
+          "active",
+          isActive
+        );
+
+        button.setAttribute(
+          "aria-pressed",
+          String(isActive)
+        );
+      });
+    }
+
+    function updateDocumentLanguage() {
+      document.documentElement.lang =
+        currentLanguage === "ko"
+          ? "ko"
+          : "en";
+    }
+
+    function changeLanguage(language) {
+      if (!["en", "ko"].includes(language)) {
+        return;
+      }
+
+      currentLanguage = language;
+
+      localStorage.setItem(
+        "evlab-language",
+        currentLanguage
+      );
+
+      renderPage();
+    }
+
     function convertDateToKorean(date) {
-      const [month, year] = date.split("/");
+      if (
+        typeof date !== "string" ||
+        !date.includes("/")
+      ) {
+        return date;
+      }
+
+      const [month, year] =
+        date.split("/");
 
       if (!month || !year) {
         return date;
@@ -267,21 +654,15 @@
       return `${year}.${month}`;
     }
 
-    function changeLanguage(language) {
-      currentLanguage = language;
-
-      localStorage.setItem(
-        "evlab-news-language",
-        currentLanguage
-      );
-
-      renderNews();
-    }
-
     languageButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        changeLanguage(button.dataset.language);
-      });
+      button.addEventListener(
+        "click",
+        () => {
+          changeLanguage(
+            button.dataset.language
+          );
+        }
+      );
     });
 
     loadNews();
