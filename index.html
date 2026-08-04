@@ -16,7 +16,6 @@
       --text: #2f2f2f;
       --muted: #6b6b6b;
       --border: #b9c9bd;
-      --background: #edf4ef;
       --white: #ffffff;
     }
 
@@ -24,12 +23,10 @@
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
+    html,
     body {
       margin: 0;
+      padding: 0;
       background: transparent;
       color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
@@ -46,7 +43,7 @@
       width: 100%;
       max-width: 1500px;
       margin: 0 auto;
-      padding: 28px 32px 50px;
+      padding: 24px 32px 34px;
     }
 
     /* ==========================================================
@@ -56,7 +53,7 @@
     .top-controls {
       display: flex;
       justify-content: flex-end;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .language-toggle {
@@ -97,15 +94,15 @@
     }
 
     /* ==========================================================
-       OUR RESEARCH PHILOSOPHY
+       RESEARCH PHILOSOPHY
        ========================================================== */
 
     .vision-section {
-      padding: 16px 0 58px;
+      padding: 12px 0 54px;
     }
 
     .vision-title {
-      margin: 0 0 42px;
+      margin: 0 0 40px;
       text-align: center;
       color: var(--green);
       font-size: 30px;
@@ -164,7 +161,7 @@
 
     .section-divider {
       width: 100%;
-      margin: 0 0 42px;
+      margin: 0 0 38px;
       border: 0;
       border-top: 1px dashed var(--border);
     }
@@ -174,15 +171,45 @@
        ========================================================== */
 
     .news-section {
-      padding: 0 0 20px;
+      padding: 0 0 10px;
     }
 
     .news-title {
-      margin: 0 0 30px;
+      margin: 0 0 24px;
       color: var(--green);
       font-size: 30px;
       font-weight: 700;
       letter-spacing: 0.2px;
+    }
+
+    .news-scroll-area {
+      max-height: 520px;
+      padding-right: 14px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      scrollbar-gutter: stable;
+      scrollbar-width: thin;
+      scrollbar-color:
+        rgba(23, 107, 47, 0.45)
+        transparent;
+    }
+
+    .news-scroll-area::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .news-scroll-area::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .news-scroll-area::-webkit-scrollbar-thumb {
+      background: rgba(23, 107, 47, 0.38);
+      border-radius: 999px;
+    }
+
+    .news-scroll-area::-webkit-scrollbar-thumb:hover {
+      background: rgba(23, 107, 47, 0.6);
     }
 
     #news-list {
@@ -222,11 +249,11 @@
 
     @media (max-width: 800px) {
       .page-container {
-        padding: 20px 18px 36px;
+        padding: 18px 18px 28px;
       }
 
       .top-controls {
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
 
       .language-button {
@@ -236,17 +263,13 @@
       }
 
       .vision-section {
-        padding: 12px 0 42px;
+        padding: 10px 0 40px;
       }
 
       .vision-title {
-        margin-bottom: 32px;
+        margin-bottom: 30px;
         font-size: 24px;
         line-height: 1.35;
-      }
-
-      .vision-content {
-        max-width: none;
       }
 
       .vision-item {
@@ -270,12 +293,17 @@
       }
 
       .section-divider {
-        margin-bottom: 32px;
+        margin-bottom: 30px;
       }
 
       .news-title {
-        margin-bottom: 24px;
+        margin-bottom: 20px;
         font-size: 25px;
+      }
+
+      .news-scroll-area {
+        max-height: 430px;
+        padding-right: 8px;
       }
 
       #news-list {
@@ -292,7 +320,7 @@
 
     @media (max-width: 430px) {
       .page-container {
-        padding: 16px 14px 30px;
+        padding: 14px 14px 24px;
       }
 
       .vision-title {
@@ -306,6 +334,10 @@
       .vision-paragraph,
       #news-list li {
         font-size: 15px;
+      }
+
+      .news-scroll-area {
+        max-height: 390px;
       }
     }
   </style>
@@ -327,7 +359,7 @@
           data-language="en"
           aria-pressed="true"
         >
-          🇺🇸 English
+         🇺🇸 English
         </button>
 
         <button
@@ -337,7 +369,7 @@
           data-language="ko"
           aria-pressed="false"
         >
-          🇰🇷 한국어
+         🇰🇷 한국어
         </button>
       </div>
     </div>
@@ -372,18 +404,20 @@
         NEWS
       </h2>
 
-      <div
-        id="status"
-        class="status-message"
-        aria-live="polite"
-      >
-        Loading news...
-      </div>
+      <div class="news-scroll-area">
+        <div
+          id="status"
+          class="status-message"
+          aria-live="polite"
+        >
+          Loading news...
+        </div>
 
-      <ul
-        id="news-list"
-        hidden
-      ></ul>
+        <ul
+          id="news-list"
+          hidden
+        ></ul>
+      </div>
     </section>
 
   </main>
@@ -514,23 +548,42 @@
       visionContent.innerHTML = "";
 
       content.sections.forEach((section) => {
-        const item = document.createElement("article");
+        const item =
+          document.createElement("article");
+
         item.className = "vision-item";
 
-        const accent = document.createElement("div");
-        accent.className = "vision-accent";
-        accent.setAttribute("aria-hidden", "true");
+        const accent =
+          document.createElement("div");
 
-        const body = document.createElement("div");
+        accent.className = "vision-accent";
+        accent.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+
+        const body =
+          document.createElement("div");
+
         body.className = "vision-body";
 
-        const heading = document.createElement("h3");
-        heading.className = "vision-subtitle";
-        heading.textContent = section.heading;
+        const heading =
+          document.createElement("h3");
 
-        const paragraph = document.createElement("p");
-        paragraph.className = "vision-paragraph";
-        paragraph.textContent = section.text;
+        heading.className =
+          "vision-subtitle";
+
+        heading.textContent =
+          section.heading;
+
+        const paragraph =
+          document.createElement("p");
+
+        paragraph.className =
+          "vision-paragraph";
+
+        paragraph.textContent =
+          section.text;
 
         body.appendChild(heading);
         body.appendChild(paragraph);
@@ -564,7 +617,8 @@
         const dateSpan =
           document.createElement("span");
 
-        dateSpan.className = "news-date";
+        dateSpan.className =
+          "news-date";
 
         const formattedDate =
           currentLanguage === "ko"
@@ -575,6 +629,7 @@
           `(${formattedDate})`;
 
         listItem.appendChild(dateSpan);
+
         listItem.appendChild(
           document.createTextNode(" ")
         );
@@ -582,13 +637,11 @@
         const textSpan =
           document.createElement("span");
 
-        /*
-          news.json의 en/ko 문장에 <strong> 태그가 포함되어 있으므로
-          innerHTML을 사용합니다.
-        */
-        textSpan.innerHTML = localizedText;
+        textSpan.innerHTML =
+          localizedText;
 
         listItem.appendChild(textSpan);
+
         newsList.appendChild(listItem);
       });
 
