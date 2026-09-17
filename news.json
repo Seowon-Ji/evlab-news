@@ -1,5 +1,10 @@
 [
   {
+  "date": "09/2026",
+  "en": "Our team will present <strong>two papers on AI-based PPG signal processing</strong> at the <strong>36th Conference on Artificial Intelligence and Signal Processing (AISP 2026)</strong>.",
+  "ko": "우리 연구팀이 <strong>제36회 인공지능신호처리 학술대회(AISP 2026)</strong>에서 <strong>인공지능 기반 PPG 신호처리에 관한 논문 2편</strong>을 발표합니다."
+  },
+  {
   "date": "08/2026",
   "en": "Our team has been selected for the NRF-funded <strong>Core Research Program: Basic Research B</strong> to conduct the project <strong>Development of a Biosignal Prior-Guided Foundation Model for ECG-Consistent Cardiac Dynamics Reconstruction from PPG and ACC</strong>.",
   "ko": "우리 연구팀이 한국연구재단 지원 <strong>우수연구-핵심연구(기본연구B) 사업</strong>에 선정되었습니다. 본 과제를 통해 <strong>PPG 및 ACC 기반 ECG 정합 심장 동역학 복원을 위한 생체신호 Prior 기반 Foundation 모델 개발</strong> 연구를 수행할 예정입니다."
